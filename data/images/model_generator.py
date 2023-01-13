@@ -49,14 +49,16 @@ model.add(layers.MaxPooling2D((2,2)))
 model.add(layers.Flatten())
 model.add(layers.Dropout(0.5))
 model.add(layers.Dense(512,activation="relu"))
-model.add(layers.Dense(DENSE_SIZE,activation="sigmoid"))
+#活性化関数(activation)はsigmoidからreluに変更
+model.add(layers.Dense(DENSE_SIZE,activation="relu"))
 
 #モデル構成の確認
 model.summary()
 # ----- /モデル構築 ----- #
 
 # ----- モデルコンパイル ----- #
-model.compile(loss="binary_crossentropy",
+# 損失関数(loss)はbinaryからmseに変更
+model.compile(loss="mse",
               optimizer=keras.optimizers.RMSprop(lr=1e-4),
               metrics=["acc"])
 # ----- /モデル構築 ----- #
