@@ -2,8 +2,11 @@
 
 参考：https://qiita.com/akidon0000/items/8fccd884559521869180
 
+下準備：
+・images フォルダの中に extended という空のフォルダを用意する
+
 データ水増し
-$ python image_duplicator.py
+$ python img_duplicator.py
 
 教師データとテストデータを作成
 $ python model/generator.py
