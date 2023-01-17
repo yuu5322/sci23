@@ -31,7 +31,7 @@ Y_TRAIN = []
 X_TEST = []
 Y_TEST = []
 # データ保存先
-TRAIN_TEST_DATA = './train_test_data/data.npy'
+TRAIN_TEST_DATA = './images/train_test_data/data.npy'
 # モデル保存先
 MODEL_ROOT_DIR = './models/'
 
