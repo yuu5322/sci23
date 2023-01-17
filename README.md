@@ -16,4 +16,4 @@ $ python train_test_data_generator.py
 $ python model_generator.py
 
 写真を判定
-$ python main.py '../AyatakaAI/data/images/testData/test1.jpg'
+$ python main.py './data/images/testData/test1.jpg'
