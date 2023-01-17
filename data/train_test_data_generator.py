@@ -36,7 +36,7 @@ Y_TRAIN = []
 X_TEST = []
 Y_TEST = []
 # 生成するファイルの名前
-TRAIN_TEST_DATA = './train_test_data/data.npy'
+TRAIN_TEST_DATA = './images/train_test_data/data.npy'
 
 
 # カテゴリごとに処理する
