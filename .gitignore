@@ -1,3 +1,5 @@
 data/images/extended
 data/images/train_test_data
 data/models/*
+
+.DS_Store
