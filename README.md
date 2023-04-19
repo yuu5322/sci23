@@ -4,7 +4,6 @@
 
 ### 下準備：
 
-・data フォルダ内の images フォルダの中に、 extended という空のフォルダを用意する  
 ・data フォルダ内の images フォルダの中に train_test_data というフォルダを作り、data.npy という空のファイルを作る
 
 ### データ水増し
