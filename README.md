@@ -2,7 +2,7 @@
 
 参考：https://qiita.com/akidon0000/items/8fccd884559521869180
 
-下準備：
+下準備：  
 ・images フォルダの中に extended という空のフォルダを用意する  
 ・images フォルダの中に train_test_data というフォルダを作り、data.npy という空のファイルを作る
 
