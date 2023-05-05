@@ -65,6 +65,10 @@ X = X.astype('float32') /255
 #one-hotベクトルにする、DENSE_SIZEが最大値
 Y = keras.utils.to_categorical(Y, DENSE_SIZE)
 
+#XとYをプリントデバッグ
+print(X)
+print(Y)
+
 # 教師データとテストデータを分ける
 X_TRAIN, X_TEST, Y_TRAIN, Y_TEST = train_test_split(X, Y, test_size=0.20)
 
