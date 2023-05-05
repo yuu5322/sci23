@@ -6,6 +6,10 @@
 
 ・data フォルダ内の images フォルダの中に train_test_data というフォルダを作り、data.npy という空のファイルを作る
 
+### original の画像データをスクレイピング
+
+$ python get_thumbnail_images.py
+
 ### データ水増し
 
 $ python img_duplicator.py

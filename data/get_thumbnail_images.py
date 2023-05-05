@@ -1,4 +1,4 @@
-# ToDo: MAQUIAがマイニングを許可しているかどうか確認する（ソースコードに書いてある場合もある）
+# ToDo: MAQUIAがスクレイピングを許可しているかどうか確認する（ソースコードに書いてある場合もある）
 
 import time
 import requests
