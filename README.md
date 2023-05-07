@@ -1,7 +1,7 @@
 # sci23
 
 参考
-綾鷹 AI：https://qiita.com/akidon0000/items/8fccd884559521869180
+綾鷹 AI：https://qiita.com/akidon0000/items/8fccd884559521869180  
 顔領域の切り取り：https://qiita.com/john-rocky/items/ce008d6dcebf39dd9bf0
 
 ### 下準備：
