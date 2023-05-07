@@ -19,10 +19,10 @@ def crop_face(path, write_path):
     img = cv2.imread(path)
     faces = faceDetector(img, 0)
     if len(faces) > 0:
-    for i in range(0, len(faces)):      
-        face_img = img[int(faces[i].top()):int(faces[i].bottom()),int(faces[i].left()):int(faces[i].right())]
+        for i in range(0, len(faces)):      
+            face_img = img[int(faces[i].top()):int(faces[i].bottom()),int(faces[i].left()):int(faces[i].right())]
 
 files = glob.glob(os.path.join(original_imgs_dir, '*.jpeg'))
 for i, file in enumerate(files):
     crop_face(original_imgs_dir, face_cut_dir)
-    cv2.imwrite(write_path, face_img)
+    cv2.imwrite(face_cut_dir, face_img)
