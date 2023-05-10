@@ -25,5 +25,6 @@ def crop_face(path):
 
 files = glob.glob(os.path.join(original_imgs_dir, '*.jpeg'))
 for f in files:
-    crop_face(f)
-    cv2.imwrite(face_cut_dir, face_img)# crop_face から return されたものを受け取って保存した方がいい。
+    #face_img = crop_face(f)
+    print(f)
+    #cv2.imwrite(face_cut_dir, face_img)# crop_face から return されたものを受け取って保存した方がいい。
