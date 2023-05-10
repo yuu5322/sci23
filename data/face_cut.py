@@ -15,15 +15,15 @@ face_cut_dir = os.path.join(img_root_dir, 'face_cut')
 os.makedirs(face_cut_dir, exist_ok=True)
 
 #顔を切り抜く関数をdefで定義
-def crop_face(path, write_path):# write_path が使われていない
+def crop_face(path):
     img = cv2.imread(path)
     faces = faceDetector(img, 0)
     if len(faces) > 0:
         for i in range(0, len(faces)):# face_img には i 番目の顔のみが入る（他の顔の情報は無視される）
             face_img = img[int(faces[i].top()):int(faces[i].bottom()),int(faces[i].left()):int(faces[i].right())]
-            # face_img が return されていない（使われていない）
+    return face_img
 
 files = glob.glob(os.path.join(original_imgs_dir, '*.jpeg'))
-for i, file in enumerate(files):# i を使っていないなら enumerate() する必要はなくて for file in files: でいい
-    crop_face(original_imgs_dir, face_cut_dir)# crop_face(file, face_cut_dir) でいいのでは？
+for f in files:
+    crop_face(f)
     cv2.imwrite(face_cut_dir, face_img)# crop_face から return されたものを受け取って保存した方がいい。
