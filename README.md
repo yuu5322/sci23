@@ -12,9 +12,9 @@
 
 $ python get_thumbnail_images.py
 
-### データ水増し
+### 顔領域の切り抜き
 
-$ python img_duplicator.py
+$ python face_cut.py
 
 ### 教師データとテストデータを作成
 
