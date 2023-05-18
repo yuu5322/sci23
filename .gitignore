@@ -1,5 +1,6 @@
 data/images/extended
 data/images/face_cut
+data/images/face_color
 data/models/*
 
 .DS_Store
