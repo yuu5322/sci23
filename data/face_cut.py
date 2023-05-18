@@ -25,7 +25,10 @@ def crop_face(path):
 
 files = glob.glob(os.path.join(original_imgs_dir, '*.jpeg'))
 for f in files:
-    face_img = crop_face(f)
-    print(f)
-    #ToDo: 元のファイル名と同じファイル名で保存したい
-    #cv2.imwrite(face_cut_dir, face_img)
+    try:
+        face_img = crop_face(f)
+        file_name = f.replace('./images/original/', './images/face_cut/')
+        cv2.imwrite(file_name, face_img)
+    except Exception as e:
+        print(f)
+        print(e)
