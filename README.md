@@ -16,6 +16,11 @@ $ python get_thumbnail_images.py
 
 $ python face_cut.py
 
+### 肌色領域の抽出と色の平均値の計算
+
+$ python face_color.py  
+$ python get_face_color_avg.py
+
 ### 教師データとテストデータを作成
 
 $ python train_test_data_generator.py
