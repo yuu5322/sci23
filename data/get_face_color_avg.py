@@ -3,8 +3,20 @@
 #import argparse
 import numpy as np
 import cv2
+import os
+import glob
 # HSV_MIN = np.array([0, 30, 70])
 # HSV_MAX = np.array([20, 150, 255])
+
+# パスの定義
+# 画像のルートディレクトリ
+img_root_dir = './images/'
+# 顔だけを切り抜いた画像のパス
+face_cut_dir = os.path.join(img_root_dir, 'face_cut')
+
+# 顔画像（カラー）の読み込み
+color_files = glob.glob(os.path.join(face_cut_dir, '*.jpeg'))
+print(color_files)
 
 img_AND = cv2.bitwise_and(img, mask)
 
