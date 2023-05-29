@@ -3,8 +3,8 @@
 #import argparse
 import numpy as np
 import cv2
-HSV_MIN = np.array([0, 30, 70])
-HSV_MAX = np.array([20, 150, 255])
+# HSV_MIN = np.array([0, 30, 70])
+# HSV_MAX = np.array([20, 150, 255])
 
 img_AND = cv2.bitwise_and(img, mask)
 
