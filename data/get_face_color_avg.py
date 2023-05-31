@@ -16,6 +16,7 @@ os.makedirs(masked_imgs_dir, exist_ok=True)
 # 顔画像（カラー）の読み込み
 color_files = glob.glob(os.path.join(face_cut_dir, '*.jpeg'))
 
+# 画像をマスクして肌色領域のみの画像を生成
 for f in color_files:
 
     color_img = cv2.imread(f)
@@ -35,3 +36,5 @@ for f in color_files:
     except Exception as e:
         print(f)
         print(e)
+
+# 肌色領域の色の平均値の計算
