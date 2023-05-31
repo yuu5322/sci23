@@ -31,5 +31,6 @@ for f in files:
     mask_hsv = cv2.inRange(img_hsv, HSV_MIN, HSV_MAX)
 
     # save image
-    #print(face_color_imgs_dir + str(uuid.uuid4()) + str('.jpeg'))
-    cv2.imwrite(face_color_imgs_dir + str(uuid.uuid4()) + str('.jpeg'), mask_hsv)
+    # 元画像と同じ名前を付けて保存
+    file_name = f.replace('/images/face_cut/', '/images/face_color/')
+    cv2.imwrite(file_name, mask_hsv)
