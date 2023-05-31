@@ -31,7 +31,7 @@ for f in color_files:
 
         # 画像をマスクして保存
         img_AND = cv2.bitwise_and(color_img, mask_img)
-        file_name = f.replace('./images/face_cut/', './images/face_masked/')
+        file_name = f.replace('/images/face_cut/', '/images/face_masked/')
         cv2.imwrite(file_name, img_AND)
 
     except Exception as e:
