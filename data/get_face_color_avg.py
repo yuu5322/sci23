@@ -24,7 +24,7 @@ for f in color_files:
 
     try:
         # 処理している画像と同じ名前のマスク画像を読み込む
-        mask_img_path = f.replace('./images/face_cut/', './images/face_color/')
+        mask_img_path = f.replace('/images/face_cut/', '/images/face_color/')
         mask_img = cv2.imread(mask_img_path)
         # そのままだと画像サイズが違ってエラーが出るので、グレースケールに変換
         #mask_img_gray = cv2.cvtColor(mask_img, cv2.COLOR_BGR2GRAY)
