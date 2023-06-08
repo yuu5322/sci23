@@ -1,12 +1,18 @@
-# coding:utf-8
-
 import dlib
 from imutils import face_utils
 import cv2
 
-# --------------------------------
-# 1.顔ランドマーク検出の前準備
-# --------------------------------
+# パスの定義
+#カレントディレクトリの取得
+current_dir = os.getcwd()
+#画像のルートディレクトリ
+img_root_dir = os.path.join(current_dir, 'images/')
+#face_cutディレクトリへのパス
+original_imgs_dir = os.path.join(img_root_dir, 'face_cut')
+#ランドマーク検出した画像の保存先へのパス
+result_imgs_dir = os.path.join(img_root_dir, 'face_landmarks')
+os.makedirs(result_imgs__dir, exist_ok=True)
+
 # 顔検出ツールの呼び出し
 face_detector = dlib.get_frontal_face_detector()
 
