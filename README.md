@@ -23,9 +23,9 @@ $ python face_cut.py
 $ python face_color.py  
 $ python get_face_color_avg.py
 
-### 顔のランドマーク検出で唇領域を切り取り → 色の平均値を計算
+### 顔のランドマーク検出
 
-$ python get_lip_color_avg.py
+$ python face_landmarks.py
 
 ### 教師データとテストデータを作成
 
