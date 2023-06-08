@@ -5,6 +5,8 @@ import cv2
 # パスの定義
 #カレントディレクトリの取得
 current_dir = os.getcwd()
+# 顔検出器の学習済みモデルへのパス
+predictor_path = os.path.join(current_dir, 'dlib/shape_predictor_68_face_landmarks.dat')
 #画像のルートディレクトリ
 img_root_dir = os.path.join(current_dir, 'images/')
 #face_cutディレクトリへのパス
@@ -17,7 +19,6 @@ os.makedirs(result_imgs__dir, exist_ok=True)
 face_detector = dlib.get_frontal_face_detector()
 
 # 顔のランドマーク検出ツールの呼び出し
-predictor_path = 'shape_predictor_68_face_landmarks.dat'
 face_predictor = dlib.shape_predictor(predictor_path)
 
 # 検出対象の画像の呼び込み
