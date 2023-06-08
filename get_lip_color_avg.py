@@ -1,21 +1,11 @@
-# python get_avg_lip_color.py -m /Users/yukahirose/Documents/ゼミ/卒論/graduation-thesis/data/shape_predictor_68_face_landmarks.dat -p 48:68 image_file(s)
-
-import argparse
 import os
 import cv2
 import dlib
 import numpy as np
-# HSV range of the lip color
+# HSV range of lip color
 HSV_MIN = np.array([0, 30, 70])
 HSV_MAX = np.array([20, 150, 255])
 
-def parse_args():
-    parser = argparse.ArgumentParser(description="get averaged HSV color for lip area of image file(s)")
-    parser.add_argument("-m", "--model", type=str, nargs=1, help="A model.")
-    parser.add_argument("-p", "--lip_points", type=str, nargs=1, help="Lip points in from:to format. (ex. 58:113)")
-    parser.add_argument("-d", "--debug", action="store_true", help="Save area images for checking.")
-    parser.add_argument("FILES", type=str, nargs="+", help="image file(s)")
-    return parser.parse_args()
 
 def detect_faces(img):
     face_detector = dlib.get_frontal_face_detector()
@@ -71,7 +61,3 @@ def main(args):
             # print(val)
             for v in val:
                 print(v)
-
-if __name__ == "__main__":
-    args = parse_args()
-    main(args)
