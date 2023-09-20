@@ -5,6 +5,7 @@
 顔領域の切り取り：https://qiita.com/john-rocky/items/ce008d6dcebf39dd9bf0  
 肌色領域の抽出：https://techtech-sorae.com/pythonopencv%E3%81%A7hsv%E8%89%B2%E7%A9%BA%E9%96%93%E3%82%92%E7%94%A8%E3%81%84%E3%81%A6%E8%82%8C%E8%89%B2%E9%A0%98%E5%9F%9F%E3%82%92%E6%8A%BD%E5%87%BA/  
 肌色領域のマスク：https://qiita.com/kotai2003/items/4b3f48db9ef8ae503fa1  
+肌色領域の平均値（RGB）を計算する：https://qiita.com/ZESSU/items/40b8bb2cd179371df6ac　
 顔のランドマーク検出：https://qiita.com/mimitaro/items/bbc58051104eafc1eb38
 
 ### 下準備：
