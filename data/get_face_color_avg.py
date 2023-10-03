@@ -47,7 +47,9 @@ masked_imgs = glob.glob(os.path.join(masked_imgs_dir, '*.jpeg'))
 input_dir = masked_imgs_dir
 output_dir = current_dir
 num_photo = sum(os.path.isfile(os.path.join(masked_imgs_dir, name)) for name in os.listdir(masked_imgs_dir))
-bgr = np.zeros((num_photo,4))
+#numpy配列で定義すると1種類のデータ型しか追加できなくなるので、空の配列で定義する
+bgr = []
+
 file_number = 0 #csvを出力する時の通し番号
 
 for k in masked_imgs:
@@ -73,10 +75,11 @@ for k in masked_imgs:
     g_ave=g_ave/l
     r_ave=r_ave/l
 
-    bgr[file_number]=np.array([file_number, b_ave, g_ave, r_ave])
+    #np配列だった場合はbgr[file_number]=np.array([file_number, b_ave, g_ave, r_ave])
+    bgr.append([file_number, k, b_ave, g_ave, r_ave])
     file_number = file_number + 1
 
-df = pd.DataFrame(bgr, columns=['file_number', 'blue', 'green', 'red'])    #opencvの並び準BGRに合わせる
+df = pd.DataFrame(bgr, columns=['file_number', 'filename', 'blue', 'green', 'red'])    #opencvの並び準BGRに合わせる
 df.to_csv(output_dir + '/face_color_avg.csv')
 
 
