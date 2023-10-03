@@ -1,7 +1,19 @@
 import cv2
+from PIL import Image
 import numpy as np
 
-# img1: 元の画像, 形状が (Width, Height, 3) の numpy 配列
+# パスの定義
+# 画像のルートディレクトリ
+current_dir = os.getcwd()
+img_root_dir = os.path.join(current_dir, 'images/')
+# 顔だけを切り抜いた画像のパス
+face_cut_dir = os.path.join(img_root_dir, 'face_cut')
+# 唇領域のみの画像の保存場所
+lip_cut_dir = os.path.join(img_root_dir, 'lip_cut')
+os.makedirs(lip_cut_dir, exist_ok=True)
+
+# img1: 元の画像（とりあえず画像を1枚指定）
+img1 = np.array(Image.open(os.path.join(face_cut_dir_root_dir, '0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')))
 # contour: 輪郭の頂点情報, 形状が (NumPoints, 2) の numpy 配列
 
 # マスク画像を作成する。
