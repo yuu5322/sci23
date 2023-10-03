@@ -47,8 +47,8 @@ masked_imgs = glob.glob(os.path.join(masked_imgs_dir, '*.jpeg'))
 input_dir = masked_imgs_dir
 output_dir = current_dir
 num_photo = sum(os.path.isfile(os.path.join(masked_imgs_dir, name)) for name in os.listdir(masked_imgs_dir))
-bgr = np.zeros((num_photo,3))
-file_number = 0 #テーブルを作る時の通し番号
+bgr = np.zeros((num_photo,4))
+file_number = 0 #csvを出力する時の通し番号
 
 for k in masked_imgs:
     img = cv2.imread(k)
@@ -73,10 +73,10 @@ for k in masked_imgs:
     g_ave=g_ave/l
     r_ave=r_ave/l
 
-    bgr[file_number]=np.array([b_ave, g_ave, r_ave])
+    bgr[file_number]=np.array([file_number, b_ave, g_ave, r_ave])
     file_number = file_number + 1
 
-df = pd.DataFrame(bgr, columns=['blue', 'green', 'red'])    #opencvの並び準BGRに合わせる
+df = pd.DataFrame(bgr, columns=['file_number', 'blue', 'green', 'red'])    #opencvの並び準BGRに合わせる
 df.to_csv(output_dir + '/face_color_avg.csv')
 
 
