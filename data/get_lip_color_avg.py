@@ -15,6 +15,8 @@ os.makedirs(lip_cut_dir, exist_ok=True)
 
 # img1: 元の画像（とりあえず画像を1枚指定）
 img1 = np.array(Image.open(os.path.join(face_cut_dir, '0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')))
+# 画像データをRGBからBGRへ変換
+img1 = img1[:, :, ::-1]
 # contour: 切り抜きたい形の輪郭の頂点情報, 形状が (NumPoints, 2) の numpy 配列
 contour = np.array((( 67, 148),
 ( 73, 140),
