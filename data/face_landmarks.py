@@ -3,6 +3,7 @@ from imutils import face_utils
 import cv2
 import os
 import glob
+import pandas as pd
 
 # パスの定義
 #カレントディレクトリの取得
@@ -26,6 +27,12 @@ face_predictor = dlib.shape_predictor(predictor_path)
 # 検出対象の画像の呼び込み
 files = glob.glob(os.path.join(original_imgs_dir, '*.jpeg'))
 
+#変数定義
+output_dir = current_dir
+landmarks = []
+#csvを出力する時の通し番号
+file_number = 0
+
 for f in files:
     img = cv2.imread(f)
 
@@ -38,12 +45,16 @@ for f in files:
     # ※2番めの引数はupsampleの回数。基本的に1回で十分。
     faces = face_detector(img_gry, 1)
 
-    # 検出した全顔に対して処理
+    # （1枚の画像の中に複数の顔があった場合）検出した全顔に対して処理
     for face in faces:
         # 顔のランドマーク検出
         landmark = face_predictor(img_gry, face)
         # 処理高速化のためランドマーク群をNumPy配列に変換(必須)
         landmark = face_utils.shape_to_np(landmark)
+
+        #ランドマークを配列に詰める（csv出力用）
+        landmarks.append([file_number, landmark])
+        file_number = file_number + 1
 
         # ランドマーク描画
         for (i, (x, y)) in enumerate(landmark):
@@ -54,3 +65,5 @@ for f in files:
     file_name = f.replace('/images/face_cut/', '/images/face_landmarks/')
     cv2.imwrite(file_name, img)
 
+df = pd.DataFrame(landmarks)
+df.to_csv(output_dir + '/lip_landmarks.csv')
