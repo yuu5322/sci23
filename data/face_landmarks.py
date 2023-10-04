@@ -65,5 +65,5 @@ for f in files:
     file_name = f.replace('/images/face_cut/', '/images/face_landmarks/')
     cv2.imwrite(file_name, img)
 
-df = pd.DataFrame(landmarks)
+df = pd.DataFrame(landmarks, columns=['file_number', 'lip_landmarks'])
 df.to_csv(output_dir + '/lip_landmarks.csv')
