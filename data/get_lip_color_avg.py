@@ -1,6 +1,7 @@
 import cv2
 from PIL import Image
 import numpy as np
+import os
 
 # パスの定義
 # 画像のルートディレクトリ
@@ -13,9 +14,19 @@ lip_cut_dir = os.path.join(img_root_dir, 'lip_cut')
 os.makedirs(lip_cut_dir, exist_ok=True)
 
 # img1: 元の画像（とりあえず画像を1枚指定）
-img1 = np.array(Image.open(os.path.join(face_cut_dir_root_dir, '0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')))
+img1 = np.array(Image.open(os.path.join(face_cut_dir, '0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')))
 # contour: 切り抜きたい形の輪郭の頂点情報, 形状が (NumPoints, 2) の numpy 配列
-# どうにかして取ってくる
+contour = np.array((( 67, 148),
+( 73, 140),
+( 83, 134),
+( 92, 135),
+(101, 131),
+(117, 132),
+(134, 134),
+(123, 150),
+(110, 159),
+(100, 161),
+( 90, 162)))
 
 # マスク画像を作成
 # 元の画像と同じ大きさのマスク画像を作る
@@ -24,8 +35,10 @@ cv2.fillConvexPoly(mask, contour, color=(255, 255, 255))
 
 # 背景画像
 bg_color = (0, 0, 0) # 黒
-img2 = np.full_like(img, bg_color)
+img2 = np.full_like(img1, bg_color)
 
 # np.where() はマスクの値が (255, 255, 255) の要素は前景画像 img1 の値、
 # マスクの値が (0, 0, 0) の要素は背景画像 img2 の値を返す。
 result = np.where(mask==255, img1, img2)
+file_name = '0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg'
+cv2.imwrite(os.path.join(lip_cut_dir, file_name), result)
