@@ -53,7 +53,7 @@ for f in files:
         landmark = face_utils.shape_to_np(landmark)
 
         #ランドマークを配列に詰める（csv出力用）
-        landmarks.append([file_number, landmark])
+        landmarks.append([file_number, f, landmark])
         file_number = file_number + 1
 
         # ランドマーク描画
@@ -65,5 +65,5 @@ for f in files:
     file_name = f.replace('/images/face_cut/', '/images/face_landmarks/')
     cv2.imwrite(file_name, img)
 
-df = pd.DataFrame(landmarks, columns=['file_number', 'lip_landmarks'])
+df = pd.DataFrame(landmarks, columns=['file_number','file_name', 'lip_landmarks'])
 df.to_csv(output_dir + '/lip_landmarks.csv')
