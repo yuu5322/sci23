@@ -53,7 +53,7 @@ for f in files:
         landmark = face_utils.shape_to_np(landmark)
 
         #ランドマークを配列に詰める（csv出力用）
-        landmarks.append([file_number, f, landmark])
+        landmarks.append([file_number, f, landmark[48:59]])
         file_number = file_number + 1
 
         # ランドマーク描画
