@@ -28,7 +28,7 @@ face_predictor = dlib.shape_predictor(predictor_path)
 files = glob.glob(os.path.join(original_imgs_dir, '*.jpeg'))
 
 #変数定義
-output_dir = current_dir
+output_dir = os.path.join(current_dir, 'csv/')
 landmarks = []
 #csvを出力する時の通し番号
 file_number = 0

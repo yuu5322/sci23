@@ -45,12 +45,12 @@ masked_imgs = glob.glob(os.path.join(masked_imgs_dir, '*.jpeg'))
 
 #変数定義
 input_dir = masked_imgs_dir
-output_dir = current_dir
+output_dir = os.path.join(current_dir, 'csv/')
 num_photo = sum(os.path.isfile(os.path.join(masked_imgs_dir, name)) for name in os.listdir(masked_imgs_dir))
 #numpy配列で定義すると1種類のデータ型しか追加できなくなるので、空の配列で定義する
 bgr = []
-
-file_number = 0 #csvを出力する時の通し番号
+#csvを出力する時の通し番号
+file_number = 0
 
 for k in masked_imgs:
     img = cv2.imread(k)

@@ -4,6 +4,6 @@ data/images/face_color
 data/images/face_masked
 data/images/face_landmarks
 data/models/*
-data/face_color_avg.csv
+data/csv/*
 
 .DS_Store
