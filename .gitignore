@@ -1,8 +1,4 @@
-data/images/extended
-data/images/face_cut
-data/images/face_color
-data/images/face_masked
-data/images/face_landmarks
+data/images/*
 data/models/*
 data/csv/*
 
