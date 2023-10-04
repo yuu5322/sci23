@@ -7,6 +7,7 @@
 肌色領域のマスク：https://qiita.com/kotai2003/items/4b3f48db9ef8ae503fa1  
 肌色領域の平均値（RGB）を計算する：https://qiita.com/ZESSU/items/40b8bb2cd179371df6ac　
 顔のランドマーク検出：https://qiita.com/mimitaro/items/bbc58051104eafc1eb38
+唇領域の平均値を計算：https://teratail.com/questions/145136
 
 ### 下準備：
 
@@ -28,6 +29,10 @@ $ python get_face_color_avg.py
 ### 顔のランドマーク検出
 
 $ python face_landmarks.py
+
+### 唇領域の色の平均値の計算
+
+$ python get_lip_color_avg.py
 
 ### 教師データとテストデータを作成
 
