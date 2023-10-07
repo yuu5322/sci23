@@ -32,6 +32,10 @@ contour = np.array((( 67, 148),
 (100, 161),
 ( 90, 162)))
 
+# 座標を取得
+lip_landmark = pd.read_csv(os.path.join(current_dir, 'csv/lip_landmarks.csv')).head(3)
+print(lip_landmark)
+
 # マスク画像を作成
 # 元の画像と同じ大きさのマスク画像を作る
 mask = np.zeros_like(img1)
