@@ -33,8 +33,11 @@ contour = np.array((( 67, 148),
 ( 90, 162)))
 
 # 座標を取得
-lip_landmark = pd.read_csv(os.path.join(current_dir, 'csv/lip_landmarks.csv')).head(3)
+df = pd.read_csv(os.path.join(current_dir, 'csv/lip_landmarks.csv'))
+# print(lip_landmark[lip_landmark['file_name'].str.contains('0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')])
+lip_landmark = df[df['file_name']==os.path.join(face_cut_dir, '0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')]['lip_landmarks']
 print(lip_landmark)
+
 
 # マスク画像を作成
 # 元の画像と同じ大きさのマスク画像を作る
