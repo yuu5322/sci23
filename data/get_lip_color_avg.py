@@ -19,6 +19,7 @@ os.makedirs(lip_cut_dir, exist_ok=True)
 img1 = np.array(Image.open(os.path.join(face_cut_dir, '0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')))
 # 画像データをRGBからBGRへ変換
 img1 = img1[:, :, ::-1]
+
 # contour: 切り抜きたい形の輪郭の頂点情報, 形状が (NumPoints, 2) の numpy 配列
 contour = np.array((( 67, 148),
 ( 73, 140),
@@ -34,9 +35,15 @@ contour = np.array((( 67, 148),
 
 # 座標を取得
 df = pd.read_csv(os.path.join(current_dir, 'csv/lip_landmarks.csv'))
-# print(lip_landmark[lip_landmark['file_name'].str.contains('0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')])
 lip_landmark = df[df['file_name']==os.path.join(face_cut_dir, '0a6d8bbe-bff4-4e44-afe1-730d7161992c.jpeg')]['lip_landmarks']
-print(lip_landmark)
+
+#a = "[[ 67 148]\n [ 73 140]\n [ 83 134]\n [ 92 135]\n [101 131]\n [117 132]\n [134 134]\n [123 150]\n [110 159]\n [100 161]\n [ 90 162]]"
+b = [list(map(int, s.split())) for s in [t for t in lip_landmark.str.replace("\\n", "").str.replace("]","").str.split("[") if t][0] if s]
+
+print(b)
+
+bn = np.array(b)
+contour = bn
 
 
 # マスク画像を作成
