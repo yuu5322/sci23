@@ -36,6 +36,7 @@ $ python get_lip_color_avg.py
 
 ### 教師データとテストデータを作成
 
+綾鷹 AI では`$ python img_duplicator.py`で画像の回転、拡大縮小によるデータの水増しを行なっているが、今回はやらない  
 $ python train_test_data_generator.py
 
 ### 学習モデルを作成
