@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-#モデルの構築
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
