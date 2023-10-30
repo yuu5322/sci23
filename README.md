@@ -9,6 +9,9 @@
 顔のランドマーク検出：https://qiita.com/mimitaro/items/bbc58051104eafc1eb38
 唇領域の平均値を計算：https://teratail.com/questions/145136, https://imagingsolution.net/program/python/numpy/rgb2bgr_conversion/
 
+`model_generator.py`参考  
+`keras.models.Sequential`について：https://qiita.com/note-tech/items/bfbd2d63addd490d58ed
+
 ### 下準備：
 
 ・data フォルダ内の images フォルダの中に train_test_data というフォルダを作り、data.npy という空のファイルを作る
