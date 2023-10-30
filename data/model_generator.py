@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-
 import numpy as np
 import matplotlib.pyplot as plt
 import os
@@ -27,10 +26,15 @@ Y_TRAIN = []
 # テストデータ
 X_TEST = []
 Y_TEST = []
-# データ保存先
-TRAIN_TEST_DATA = './images/train_test_data/data.npy'
+
+# パス定義
+current_dir = os.getcwd()
+# テストデータ保存先
+TRAIN_TEST_DATA = os.path.join(current_dir, '/images/train_test_data/data.npy')
+TRAIN_TEST_DATA.touch(exist_ok=True) # data.npyが存在しなかったら作成
 # モデル保存先
-MODEL_ROOT_DIR = './models/'
+MODEL_ROOT_DIR = os.path.join(current_dir, '/models/')
+os.makedirs(MODEL_ROOT_DIR, exist_ok=True)
 
 
 # ----- モデル構築 ----- #
