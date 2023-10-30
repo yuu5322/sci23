@@ -8,10 +8,11 @@ import numpy as np
 import sys
 import os
 
-# モデル保存先
-MODEL_ROOT_DIR = './data/models/'
-MODEL_PATH = os.path.join(MODEL_ROOT_DIR, 'model_predict.json')
-WEIGHT_PATH = os.path.join(MODEL_ROOT_DIR, 'model_predict.hdf5')
+# パスの整理
+current_dir = os.getcwd()
+MODEL_PATH = os.path.join(current_dir, '/data/models/model_predict.json')
+WEIGHT_PATH = os.path.join(current_dir, '/data/models/model_predict.hdf5')
+
 # カテゴリ
 CATEGORIES = [
     u'16Tea',
