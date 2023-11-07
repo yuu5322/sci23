@@ -7,8 +7,13 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
-# 画像が保存されているルートディレクトリのパス
-IMG_ROOT_DIR = './images/extended'
+# パスの定義
+# 画像のルートディレクトリ
+current_dir = os.getcwd()
+img_root_dir = os.path.join(current_dir, 'images/')
+# テストデータ保存先
+TRAIN_TEST_DATA = os.path.join(current_dir, '/images/train_test_data/data.npy')
+TRAIN_TEST_DATA.touch(exist_ok=True) # data.npyが存在しなかったら作成
 
 # 密度
 DENSE_SIZE = len(CATEGORIES)
@@ -24,8 +29,6 @@ Y_TRAIN = []
 # テストデータ
 X_TEST = []
 Y_TEST = []
-# 生成するファイルの名前
-TRAIN_TEST_DATA = './images/train_test_data/data.npy'
 
 
 # カテゴリごとに処理する
