@@ -8,9 +8,9 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 # パスの定義
-# 画像のルートディレクトリ
+# 顔画像のディレクトリ
 current_dir = os.getcwd()
-img_root_dir = os.path.join(current_dir, 'images/')
+face_cut_dir = os.path.join(current_dir, 'images/face_cut')
 # テストデータ保存先
 TRAIN_TEST_DATA = os.path.join(current_dir, '/images/train_test_data/data.npy')
 TRAIN_TEST_DATA.touch(exist_ok=True) # data.npyが存在しなかったら作成
@@ -31,23 +31,18 @@ X_TEST = []
 Y_TEST = []
 
 
-# カテゴリごとに処理する
-# enumerateはリストのインデックス番号と要素の両方を取得できるようにするやつ
-for idx, category in enumerate(CATEGORIES):
-    # 各ラベルの画像ディレクトリにアクセス
-    image_dir = os.path.join(IMG_ROOT_DIR, category)
-    #.jpgで終わるファイルを全部取得してfilesの中に入れる
-    files = glob.glob(os.path.join(image_dir, '*.jpg'))
-    #filesでforループ
-    for f in files:
-        # 各画像をリサイズしてデータに変換する
-        img = Image.open(f)
-        img = img.convert('RGB')
-        img = img.resize((IMG_SIZE, IMG_SIZE))
-        data = np.asarray(img)
-        # appendはリストに要素を追加するやつ
-        X.append(data)
-        Y.append(idx)
+#.jpgで終わるファイルを全部取得してfilesの中に入れる
+files = glob.glob(os.path.join(face_cut_dir, '*.jpg'))
+#filesでforループ
+for f in files:
+    # 各画像をリサイズしてデータに変換する
+    img = Image.open(f)
+    img = img.convert('RGB')
+    img = img.resize((IMG_SIZE, IMG_SIZE))
+    data = np.asarray(img)
+    # appendはリストに要素を追加するやつ
+    X.append(data)
+    Y.append(idx)
 
 X = np.array(X)
 Y = np.array(Y)
