@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from PIL import Image
 import os, glob
 import numpy as np
