@@ -33,7 +33,7 @@ Y_TEST = []
 
 
 #.jpgで終わるファイルを全部取得してfilesの中に入れる
-files = glob.glob(os.path.join(face_cut_dir, '*.jpg'))
+files = glob.glob(os.path.join(face_cut_dir, '*.jpeg'))
 #filesでforループ
 for f in files:
     # 各画像をリサイズしてデータに変換する
