@@ -13,10 +13,11 @@ current_dir = os.getcwd()
 face_cut_dir = os.path.join(current_dir, 'images/face_cut')
 # テストデータ保存先
 TRAIN_TEST_DATA = os.path.join(current_dir, '/images/train_test_data/data.npy')
-TRAIN_TEST_DATA.touch(exist_ok=True) # data.npyが存在しなかったら作成
+#TRAIN_TEST_DATA.touch(exist_ok=True) # data.npyが存在しなかったら作成
 
-# 密度
-DENSE_SIZE = len(CATEGORIES)
+# 密度（Dense Layerの出力ニューロン数）
+# 綾鷹AIを引き継いでとりあえず10にしておく（後から調整可）
+DENSE_SIZE = 10
 # 画像サイズ
 IMG_SIZE = 150
 # 画像データ
