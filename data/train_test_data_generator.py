@@ -6,14 +6,22 @@ from sklearn.model_selection import train_test_split
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
+from pathlib import Path
 
 # パスの定義
 # 顔画像のディレクトリ
 current_dir = os.getcwd()
 face_cut_dir = os.path.join(current_dir, 'images/face_cut')
 # テストデータ保存先
-TRAIN_TEST_DATA = os.path.join(current_dir, '/images/train_test_data/data.npy')
-#TRAIN_TEST_DATA.touch(exist_ok=True) # data.npyが存在しなかったら作成
+# ディレクトリ
+train_test_data_dir = os.path.join(current_dir, 'train_test_data/')
+os.makedirs(train_test_data_dir, exist_ok=True)# train_test_dataフォルダが存在しなかったら作成
+# .npyファイル
+TRAIN_TEST_DATA = os.path.join(train_test_data_dir, 'data.npy')
+# data.npyファイルが存在しなかったら作成
+file_path_obj = Path(TRAIN_TEST_DATA)
+if not file_path_obj.exists():
+    file_path_obj.touch()
 
 # 密度（Dense Layerの出力ニューロン数）
 # 綾鷹AIを引き継いでとりあえず10にしておく（後から調整可）
@@ -43,7 +51,7 @@ for f in files:
     data = np.asarray(img)
     # appendはリストに要素を追加するやつ
     X.append(data)
-    Y.append(idx)
+    Y.append(1)
 
 X = np.array(X)
 Y = np.array(Y)
