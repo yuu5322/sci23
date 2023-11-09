@@ -1,5 +1,5 @@
 from PIL import Image
-import os, glob
+import sys, os, glob, csv
 import numpy as np
 import random, math
 from sklearn.model_selection import train_test_split
@@ -8,10 +8,11 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from pathlib import Path
 
+
 # パスの定義
-# 顔画像のディレクトリ
+# リップカラーのcsvデータ
 current_dir = os.getcwd()
-face_cut_dir = os.path.join(current_dir, 'images/face_cut')
+lip_color_csv = os.path.join(current_dir, 'csv/lip_color_avg.csv')
 # テストデータ保存先
 # ディレクトリ
 train_test_data_dir = os.path.join(current_dir, 'train_test_data/')
@@ -22,6 +23,19 @@ TRAIN_TEST_DATA = os.path.join(train_test_data_dir, 'data.npy')
 file_path_obj = Path(TRAIN_TEST_DATA)
 if not file_path_obj.exists():
     file_path_obj.touch()
+
+LIP_COLOR_DATA_FILE = lip_color_csv
+lip_color_data = []
+# csvファイルを読み込みモード（"r"）で開く
+# fは任意の名前（fじゃなくてもいい）
+with open(LIP_COLOR_DATA_FILE, "r") as f:
+    header = True
+    reader = csv.reader(f)
+    for row in reader:
+        if header:
+            header = False
+            continue
+        lip_color_data.append({"id":int(row[0]), "file":row[2], "blue":float(row[3]), "green":float(row[4]), "red":float(row[5])})
 
 # 密度（Dense Layerの出力ニューロン数）
 # 綾鷹AIを引き継いでとりあえず10にしておく（後から調整可）
@@ -40,26 +54,25 @@ X_TEST = []
 Y_TEST = []
 
 
-#.jpgで終わるファイルを全部取得してfilesの中に入れる
-files = glob.glob(os.path.join(face_cut_dir, '*.jpeg'))
-#filesでforループ
-for f in files:
+#lip_color_dataでforループ
+# entryは要素のかたまりという意味（任意の名前）
+for entry in lip_color_data:
     # 各画像をリサイズしてデータに変換する
-    img = Image.open(f)
+    img = Image.open(entry["file"])
     img = img.convert('RGB')
     img = img.resize((IMG_SIZE, IMG_SIZE))
     data = np.asarray(img)
     # appendはリストに要素を追加するやつ
     X.append(data)
-    Y.append(1)
+    Y.append([entry["red"], entry["green"], entry["blue"]])
 
 X = np.array(X)
-Y = np.array(Y)
+Y = np.array(Y, dtype=np.float32)
 
 # 正規化
-X = X.astype('float32') /255
-#one-hotベクトルにする、DENSE_SIZEが最大値
-Y = keras.utils.to_categorical(Y, DENSE_SIZE)
+# 綾鷹はベクトルにしてたけど今回はしない
+X = X.astype('float32') / 255
+Y = Y / 255
 
 #XとYをプリントデバッグ
 print(X)
