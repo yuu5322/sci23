@@ -6,18 +6,9 @@ import matplotlib.pyplot as plt
 import os
 from pathlib import Path
 
-# カテゴリ
-CATEGORIES = [
-    u'16Tea',
-    u'AYATAKA',
-    u'AYATAKA_amami',
-    u'Nagomi',
-    u'OiOcha_shinryoku',
-    u'BarleyTea_Tsurube',
-    u'OiOcha',]
-
-# 密度
-DENSE_SIZE = len(CATEGORIES)
+# 密度（Dense Layerの出力ニューロン数）
+# 綾鷹AIを引き継いでとりあえず10にしておく（後から調整可）
+DENSE_SIZE = 10
 # 画像サイズ
 IMG_SIZE = 150
 INPUT_SHAPE = (IMG_SIZE, IMG_SIZE,3)
