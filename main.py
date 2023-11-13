@@ -13,25 +13,6 @@ current_dir = os.getcwd()
 MODEL_PATH = os.path.join(current_dir, '/data/models/model_predict.json')
 WEIGHT_PATH = os.path.join(current_dir, '/data/models/model_predict.hdf5')
 
-# カテゴリ
-CATEGORIES = [
-    u'16Tea',
-    u'AYATAKA',
-    u'AYATAKA_amami',
-    u'Nagomi',
-    u'OiOcha_shinryoku',
-    u'BarleyTea_Tsurube',
-    u'OiOcha',]
-
-CATEGORIES_NAME = [
-    u'十六茶',
-    u'綾鷹',
-    u'綾鷹茶葉のあまみ',
-    u'おいしい緑茶なごみ',
-    u'おーいお茶新緑',
-    u'天然ミネラル麦茶',
-    u'おーいお茶']
-
 # 画像サイズ
 IMG_SIZE = 150
 INPUT_SHAPE = (IMG_SIZE, IMG_SIZE,3)
