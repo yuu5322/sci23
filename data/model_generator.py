@@ -52,12 +52,14 @@ model.add(layers.Dense(DENSE_SIZE,activation="relu"))
 model.summary()
 # ----- /モデル構築 ----- #
 
+
 # ----- モデルコンパイル ----- #
 # 損失関数(loss)はbinaryからmseに変更
 model.compile(loss="mse",
               optimizer=keras.optimizers.RMSprop(lr=1e-4),
               metrics=["acc"])
 # ----- /モデル構築 ----- #
+
 
 # ----- モデル学習 ----- #
 # 教師データとテストデータを読み込む
@@ -68,6 +70,7 @@ model = model.fit(X_TRAIN,
                   batch_size=6,
                   validation_data=(X_TEST, Y_TEST))
 # ----- /モデル学習 ----- #
+
 
 # ----- 学習結果プロット ----- #
 acc = model.history['acc']
@@ -91,6 +94,7 @@ plt.title('Training and validation loss')
 plt.legend()
 plt.savefig(os.path.join(MODEL_ROOT_DIR, 'Training_and_validation_loss.png'))
 # ----- /学習結果プロット ----- #
+
 
 # ----- モデル保存 ----- #
 # モデル保存
