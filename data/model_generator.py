@@ -4,6 +4,7 @@ from tensorflow.keras import layers
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+from pathlib import Path
 
 # カテゴリ
 CATEGORIES = [
@@ -30,10 +31,13 @@ Y_TEST = []
 # パス定義
 current_dir = os.getcwd()
 # テストデータ保存先
-TRAIN_TEST_DATA = os.path.join(current_dir, '/images/train_test_data/data.npy')
-TRAIN_TEST_DATA.touch(exist_ok=True) # data.npyが存在しなかったら作成
+TRAIN_TEST_DATA = os.path.join(current_dir, 'train_test_data/data.npy')
+# data.npyが存在しなかったら作成
+file_path_obj = Path(TRAIN_TEST_DATA)
+if not file_path_obj.exists():
+    file_path_obj.touch()
 # モデル保存先
-MODEL_ROOT_DIR = os.path.join(current_dir, '/models/')
+MODEL_ROOT_DIR = os.path.join(current_dir, 'models/')
 os.makedirs(MODEL_ROOT_DIR, exist_ok=True)
 
 
