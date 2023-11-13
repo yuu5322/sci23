@@ -7,7 +7,8 @@
 肌色領域のマスク：https://qiita.com/kotai2003/items/4b3f48db9ef8ae503fa1  
 肌色領域の平均値（RGB）を計算する：https://qiita.com/ZESSU/items/40b8bb2cd179371df6ac　
 顔のランドマーク検出：https://qiita.com/mimitaro/items/bbc58051104eafc1eb38
-唇領域の平均値を計算：https://teratail.com/questions/145136, https://imagingsolution.net/program/python/numpy/rgb2bgr_conversion/
+唇領域の平均値を計算：https://teratail.com/questions/145136, https://imagingsolution.net/program/python/numpy/rgb2bgr_conversion/  
+モデル生成：https://qiita.com/tomo_20180402/items/e8c55bdca648f4877188
 
 `model_generator.py`参考  
 `keras.models.Sequential`について：https://qiita.com/note-tech/items/bfbd2d63addd490d58ed

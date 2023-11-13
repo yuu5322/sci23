@@ -73,6 +73,11 @@ model = model.fit(X_TRAIN,
 
 
 # ----- 学習結果プロット ----- #
+# epochごとに学習結果がプロットされる
+# loss: training loss 
+# acc: training accuracy
+# val_loss: validation loss
+# val_acc: validation accuracy
 acc = model.history['acc']
 val_acc = model.history['val_acc']
 loss = model.history['loss']
