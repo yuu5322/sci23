@@ -39,7 +39,7 @@ with open(LIP_COLOR_DATA_FILE, "r") as f:
 
 # 密度（Dense Layerの出力ニューロン数）
 # 綾鷹AIを引き継いでとりあえず10にしておく（後から調整可）
-DENSE_SIZE = 10
+DENSE_SIZE = 3
 # 画像サイズ
 IMG_SIZE = 150
 # 画像データ
