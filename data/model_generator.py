@@ -74,7 +74,7 @@ model = model.fit(X_TRAIN,
 
 # ----- 学習結果プロット ----- #
 # epochごとに学習結果がプロットされる
-# loss: training loss 
+# loss: training loss 損失関数（今回はMSE）で計算した、機械学習モデルが予測した結果と実際の値のズレのこと
 # acc: training accuracy
 # val_loss: validation loss
 # val_acc: validation accuracy
@@ -85,6 +85,7 @@ val_loss = model.history['val_loss']
 
 epochs = range(len(acc))
 
+# 学習結果をグラフにしたものをpngファイルにして保存
 plt.plot(epochs, acc, 'bo', label='Training acc')
 plt.plot(epochs, val_acc, 'b', label='Validation acc')
 plt.title('Training and validation accuracy')
