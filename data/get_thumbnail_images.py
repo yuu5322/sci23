@@ -7,7 +7,7 @@ import uuid
 from bs4 import BeautifulSoup
 
 # 200ページ分（1ページは約12記事）のサムネイル画像を取得
-# 多分30分くらいかかった
+# 多分1時間弱くらいかかった
 for page in range(1,201):
    r = requests.get("https://maquia.hpplus.jp/makeup/news/?page="+str(page))
    time.sleep(1)
