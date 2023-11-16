@@ -6,8 +6,6 @@ import re
 import uuid
 from bs4 import BeautifulSoup
 
-filepath = './data/links.txt'
-li_link = []
 
 for page in range(1,201):
    r = requests.get("https://maquia.hpplus.jp/makeup/news/?page="+str(page))
