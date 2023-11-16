@@ -6,7 +6,7 @@ import re
 import uuid
 from bs4 import BeautifulSoup
 
-
+# 200ページ分（1ページは約12記事）のサムネイル画像を取得
 for page in range(1,201):
    r = requests.get("https://maquia.hpplus.jp/makeup/news/?page="+str(page))
    time.sleep(1)
