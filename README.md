@@ -13,10 +13,6 @@
 `model_generator.py`参考  
 `keras.models.Sequential`について：https://qiita.com/note-tech/items/bfbd2d63addd490d58ed
 
-### 下準備：
-
-・data フォルダ内の images フォルダの中に train_test_data というフォルダを作り、data.npy という空のファイルを作る
-
 ### original の画像データをスクレイピング
 
 $ python get_thumbnail_images.py
