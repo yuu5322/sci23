@@ -22,6 +22,6 @@ for page in range(1,201):
       for img in imgs:
          r = requests.get(img['src'])
          time.sleep(1)
-         with open(str('./data/picture/')+str(uuid.uuid4())+str('.jpeg'),'wb') as file:
+         with open(str('./images/original/')+str(uuid.uuid4())+str('.jpeg'),'wb') as file:
                file.write(r.content)
 
