@@ -11,7 +11,7 @@ img_root_dir = os.path.join(current_dir, 'images/')
 # 顔だけを切り抜いた画像のパス
 face_cut_dir = os.path.join(img_root_dir, 'face_cut')
 # マスク後の画像の保存場所
-masked_imgs_dir = os.path.join(img_root_dir, 'face_masked')
+masked_imgs_dir = os.path.join(img_root_dir, 'face_masked/')
 os.makedirs(masked_imgs_dir, exist_ok=True)
 
 # 顔画像（カラー）の読み込み
@@ -44,7 +44,6 @@ for f in color_files:
 masked_imgs = glob.glob(os.path.join(masked_imgs_dir, '*.jpeg'))
 
 #変数定義
-input_dir = masked_imgs_dir
 output_dir = os.path.join(current_dir, 'csv/')
 num_photo = sum(os.path.isfile(os.path.join(masked_imgs_dir, name)) for name in os.listdir(masked_imgs_dir))
 #numpy配列で定義すると1種類のデータ型しか追加できなくなるので、空の配列で定義する
@@ -70,14 +69,16 @@ for k in masked_imgs:
                 g_ave=g_ave+img[i,j,1]
                 r_ave=r_ave+img[i,j,2]
 
-    #画素値合計をピクセル数で除することでRGBの画素値の平均値を求める
-    b_ave=b_ave/l
-    g_ave=g_ave/l
-    r_ave=r_ave/l
+    # face_maskedフォルダの中にたまに真っ黒の画像が混ざっていて、l=0でエラーが出るので除外する
+    if 0 < l:
+        #画素値合計をピクセル数で除することでRGBの画素値の平均値を求める
+        b_ave=b_ave/l
+        g_ave=g_ave/l
+        r_ave=r_ave/l
 
-    #np配列だった場合はbgr[file_number]=np.array([file_number, b_ave, g_ave, r_ave])
-    bgr.append([file_number, k, b_ave, g_ave, r_ave])
-    file_number = file_number + 1
+        #np配列だった場合はbgr[file_number]=np.array([file_number, b_ave, g_ave, r_ave])
+        bgr.append([file_number, k, b_ave, g_ave, r_ave])
+        file_number = file_number + 1
 
 df = pd.DataFrame(bgr, columns=['file_number', 'filename', 'blue', 'green', 'red'])    #opencvの並び準BGRに合わせる
 df.to_csv(output_dir + '/face_color_avg.csv')
