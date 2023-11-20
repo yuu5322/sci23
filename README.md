@@ -13,6 +13,8 @@
 `model_generator.py`参考  
 `keras.models.Sequential`について：https://qiita.com/note-tech/items/bfbd2d63addd490d58ed
 
+※実験し直す場合は、data/images 内の画像を全て削除してから、data_models 内の前回の実験結果のプロットを保存しておくこと
+
 ### original の画像データをスクレイピング
 
 $ python get_thumbnail_images.py
