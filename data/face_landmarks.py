@@ -52,12 +52,17 @@ for f in files:
         # 処理高速化のためランドマーク群をNumPy配列に変換(必須)
         landmark = face_utils.shape_to_np(landmark)
 
+        # 切り取りたい下唇の真ん中の座標を配列に詰める
+        lip_landmarks = []
+        lip_landmarks.extend(landmark[56:59])
+        lip_landmarks.extend(landmark[65:69])
+
         #ランドマークを配列に詰める（csv出力用）
-        landmarks.append([file_number, f, landmark[48:59]])
+        landmarks.append([file_number, f, lip_landmarks])
         file_number = file_number + 1
 
         # ランドマーク描画
-        for (i, (x, y)) in enumerate(landmark):
+        for (i, (x, y)) in enumerate(lip_landmarks):
             cv2.circle(img, (x, y), 1, (255, 0, 0), -1)
 
     # 生成した画像を保存
