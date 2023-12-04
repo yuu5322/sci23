@@ -25,8 +25,11 @@ model.load_weights(WEIGHT_PATH)
 
 # 入力引数から画像を読み込む
 args = sys.argv
+# 読み込んだ画像をINPUT_SHAPEにリサイズ
 img = keras.preprocessing.image.load_img(args[1], target_size=INPUT_SHAPE)
+# 前の行でリサイズしたimgをndarrayに変換
 x = keras.preprocessing.image.img_to_array(img)
+# ndarrayに次元を追加（理由は不明）
 x = np.expand_dims(x, axis=0)
 
 # モデルで予測する
