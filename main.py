@@ -23,7 +23,7 @@ model.load_weights(WEIGHT_PATH)
 
 
 
-# # 入力引数から画像を読み込む
+# 入力引数から画像を読み込む
 args = sys.argv
 img = keras.preprocessing.image.load_img(args[1], target_size=INPUT_SHAPE)
 x = keras.preprocessing.image.img_to_array(img)
