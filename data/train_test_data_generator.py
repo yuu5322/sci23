@@ -57,14 +57,16 @@ Y_TEST = []
 #lip_color_dataでforループ
 # entryは要素のかたまりという意味（任意の名前）
 for entry in lip_color_data:
-    # 各画像をリサイズしてデータに変換する
+    # face_cutフォルダから取得した画像をリサイズしてデータに変換する
     img = Image.open(entry["file"])
     img = img.convert('RGB')
     img = img.resize((IMG_SIZE, IMG_SIZE))
     data = np.asarray(img)
     # appendはリストに要素を追加するやつ
+    # Xはdata、つまりface_cutフォルダ内の画像をnparrayに変換したもの
+    # Yはbgr、つまりリップカラーの数値
     X.append(data)
-    Y.append([entry["red"], entry["green"], entry["blue"]])
+    Y.append([entry["blue"], entry["green"], entry["red"]])
 
 X = np.array(X)
 Y = np.array(Y, dtype=np.float32)
