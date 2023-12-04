@@ -34,13 +34,15 @@ x = np.expand_dims(x, axis=0)
 
 # モデルで予測する
 features = model.predict(x)
-print("確率：")
-for i in range(0, 7):
-    print(str(CATEGORIES_NAME[i]) + ' ： ' + str(features[0][i]))
-print("----------------------------------------------")
-print("計算結果")
-if np.argmax(features[0]) == 1:
-    print(u'選ばれたのは綾鷹でした。')
-else:
-    print(u'綾鷹ではなく' + str(CATEGORIES_NAME[np.argmax(features[0])]) + 'が選ばれました。')
-print("----------------------------------------------")
+print(features)
+
+# print("確率：")
+# for i in range(0, 7):
+#     print(str(CATEGORIES_NAME[i]) + ' ： ' + str(features[0][i]))
+# print("----------------------------------------------")
+# print("計算結果")
+# if np.argmax(features[0]) == 1:
+#     print(u'選ばれたのは綾鷹でした。')
+# else:
+#     print(u'綾鷹ではなく' + str(CATEGORIES_NAME[np.argmax(features[0])]) + 'が選ばれました。')
+# print("----------------------------------------------")
