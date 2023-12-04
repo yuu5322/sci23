@@ -29,7 +29,7 @@ img = keras.preprocessing.image.load_img(args[1], target_size=INPUT_SHAPE)
 x = keras.preprocessing.image.img_to_array(img)
 x = np.expand_dims(x, axis=0)
 
-# # モデルで予測する
+# モデルで予測する
 features = model.predict(x)
 print("確率：")
 for i in range(0, 7):
