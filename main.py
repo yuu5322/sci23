@@ -1,4 +1,4 @@
-# $ python main.py './data/images/test/画像ファイル名'
+# $ python main.py './data/images/test/test1.jpeg'
 
 import tensorflow as tf
 from tensorflow import keras
