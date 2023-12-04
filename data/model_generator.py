@@ -66,8 +66,8 @@ model.compile(loss="mse",
 X_TRAIN, X_TEST, Y_TRAIN, Y_TEST = np.load(TRAIN_TEST_DATA, allow_pickle=True)
 model = model.fit(X_TRAIN,
                   Y_TRAIN,
-                  epochs=10,
-                  batch_size=6,
+                  epochs=100,
+                  batch_size=32,
                   validation_data=(X_TEST, Y_TEST))
 # ----- /モデル学習 ----- #
 
