@@ -38,7 +38,7 @@ with open(LIP_COLOR_DATA_FILE, "r") as f:
         lip_color_data.append({"id":int(row[0]), "file":row[2], "blue":float(row[3]), "green":float(row[4]), "red":float(row[5])})
 
 # 密度（Dense Layerの出力ニューロン数）
-# 綾鷹AIを引き継いでとりあえず10にしておく（後から調整可）
+# 今回はB, G, Rの3つの数値を出力するので3
 DENSE_SIZE = 3
 # 画像サイズ
 IMG_SIZE = 150

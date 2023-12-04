@@ -89,7 +89,8 @@ for k in lip_imgs:
     r_ave=r_ave/l
 
     #np配列だった場合はbgr[file_number]=np.array([file_number, b_ave, g_ave, r_ave])
-    bgr.append([file_number, k, b_ave, g_ave, r_ave])
+    file_name_for_csv = k.replace('/images/lip_cut/', '/images/face_cut/')
+    bgr.append([file_number, file_name_for_csv, b_ave, g_ave, r_ave])
     file_number = file_number + 1
 
 df = pd.DataFrame(bgr, columns=['file_number', 'filename', 'blue', 'green', 'red'])    #opencvの並び準BGRに合わせる
