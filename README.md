@@ -47,4 +47,4 @@ $ python model_generator.py
 
 ### 写真を判定
 
-$ python main.py './data/images/test/画像ファイル名'
+$ python main.py './data/images/test/test1.jpeg'
