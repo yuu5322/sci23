@@ -4,6 +4,7 @@ import numpy as np
 import os
 import glob
 import pandas as pd
+import json
 
 # パスの定義
 # 画像のルートディレクトリ
@@ -27,13 +28,15 @@ for f in face_imgs:
     img_bgr = img[:, :, ::-1]
 
     #　画像ファイル名と一致する座標を取り出す
-    lip_landmark = df[df['file_name']==os.path.join(f)]['lip_landmarks']
+    lip_landmark = df[df['file_name']==os.path.join(f)]['lip_landmarks'].tolist()
     #　顔のランドマーク検出が上手くいってなくてcsvが空の時は処理しないようにする
-    if( len(lip_landmark) > 0 ):
+    try:
         # \nなどの余分なものを取り除く
-        b = [list(map(int, s.split())) for s in [t for t in lip_landmark.str.replace("\\n", "").str.replace("]","").str.split("[") if t][0] if s]
+        #b = [list(map(int, s.split())) for s in [t for t in lip_landmark.str.replace("\\n", "").str.replace("]","").str.split("[") if t][0] if s]
         #　arrayに変換
-        contour = np.array(b)
+        # contour = np.array(b)
+        # print(type(lip_landmark[0]), len(lip_landmark[0]), lip_landmark[0])
+        contour = np.array(json.loads(lip_landmark[0]))
 
         # マスク画像を作成
         # 元の画像と同じ大きさのマスク画像を作る
@@ -49,6 +52,8 @@ for f in face_imgs:
         result = np.where(mask==255, img_bgr, bg_img)
         file_name = f.replace('/images/face_cut/', '/images/lip_cut/')
         cv2.imwrite(file_name, result)
+    except Exception as e:
+        print(type(e), os.path.basename(f))
 
 
 # 唇領域の色の平均値の計算
