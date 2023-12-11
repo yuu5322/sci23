@@ -4,6 +4,7 @@ import cv2
 import os
 import glob
 import pandas as pd
+import json
 
 # パスの定義
 #カレントディレクトリの取得
@@ -54,11 +55,11 @@ for f in files:
 
         # 切り取りたい下唇の真ん中の座標を配列に詰める
         lip_landmarks = []
-        lip_landmarks.extend(landmark[56:59])
-        lip_landmarks.extend(landmark[65:69])
+        lip_landmarks.extend(landmark[56:59].tolist())
+        lip_landmarks.extend(landmark[65:69].tolist())
 
         #ランドマークを配列に詰める（csv出力用）
-        landmarks.append([file_number, f, lip_landmarks])
+        landmarks.append([file_number, f, json.dumps(lip_landmarks)])
         file_number = file_number + 1
 
         # ランドマーク描画
