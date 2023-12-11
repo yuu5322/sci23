@@ -55,7 +55,11 @@ for f in files:
 
         # 切り取りたい下唇の真ん中の座標を配列に詰める
         lip_landmarks = []
-        lip_landmarks.extend(landmark[56:59].tolist())
+        #下唇の下側の座標（no.56~59）を逆にする（そうしないと変な形に切り抜かれるので）
+        under_landmark = landmark[56:59]
+        under_landmark = under_landmark[::-1]
+        #リストにして詰める
+        lip_landmarks.extend(under_landmark.tolist())
         lip_landmarks.extend(landmark[65:69].tolist())
 
         #ランドマークを配列に詰める（csv出力用）
