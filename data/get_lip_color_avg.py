@@ -81,7 +81,9 @@ for k in lip_imgs:
     for i in range(h):
         for j in range(w):
             #画素値[0,0,0]（Black）を除外してピクセルの和とbgrの画素値の合計を計算する
-            if(img[i,j,0] != 0 or img[i,j,1] != 0 or img[i,j,2] != 0 ):
+            #元はandじゃなくてor（色が完全に黒[0,0,0]のものだけ削除する）にしてた
+            #けど、どうやら完全に黒じゃないっぽい（[0,0,1]とかが混じってる）のでandにした
+            if(img[i,j,0] != 0 and img[i,j,1] != 0 and img[i,j,2] != 0 ):
                 l+=1    #対象となるピクセル数を計算する
                 #対象となるピクセルの画素値の和を計算する
                 b_ave=b_ave+img[i,j,0]
