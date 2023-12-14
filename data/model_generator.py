@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 
 # 密度（Dense Layerの出力ニューロン数）
-# 綾鷹AIを引き継いでとりあえず10にしておく（後から調整可）
+# 綾鷹AIを引き継いでとりあえず10にしておく（後から調整可）→　今回はRGBの3つの値を出力するので3
 DENSE_SIZE = 3
 # 画像サイズ
 IMG_SIZE = 150
