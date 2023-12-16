@@ -132,7 +132,37 @@ try:
 except Exception as e:
     print(type(e), os.path.basename(f))
 
+# リップカラーの平均値の計算
 
+bgr = []
+
+img = cv2.imread('./test/lip_cut1.jpeg')
+h, w, c = img.shape #height, width, channnel
+
+# 初期値の定義
+l=0
+b_ave=0; g_ave=0; r_ave=0
+
+for i in range(h):
+    # 初期値の定義
+    for j in range(w):
+        #画素値[0,0,0]（Black）を除外してピクセルの和とbgrの画素値の合計を計算する
+        #元はandじゃなくてor（色が完全に黒[0,0,0]のものだけ削除する）にしてた
+        #けど、どうやら完全に黒じゃないっぽい（[0,0,1]とかが混じってる）のでandにした
+        if(img[i,j,0] != 0 and img[i,j,1] != 0 and img[i,j,2] != 0 ):
+            l+=1    #対象となるピクセル数を計算する
+            #対象となるピクセルの画素値の和を計算する
+            b_ave=b_ave+img[i,j,0]
+            g_ave=g_ave+img[i,j,1]
+            r_ave=r_ave+img[i,j,2]
+
+#画素値合計をピクセル数で除することでRGBの画素値の平均値を求める
+b_ave=b_ave/l
+g_ave=g_ave/l
+r_ave=r_ave/l
+
+bgr.append([b_ave, g_ave, r_ave])
+print(bgr)
 
 
 '''
