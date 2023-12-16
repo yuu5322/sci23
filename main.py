@@ -10,6 +10,7 @@ import cv2
 import dlib
 import glob
 from imutils import face_utils
+from PIL import Image
 
 # パスの整理
 current_dir = os.getcwd()
@@ -94,6 +95,43 @@ for (i, (x, y)) in enumerate(lip_landmarks):
 # 生成した画像を保存
 file_name = ('./test/lip_landmarks1.jpeg')
 cv2.imwrite(file_name, img)
+
+
+# リップカラーの抽出
+
+# 唇領域の切り取り
+
+# マスク画像の作成
+f = './test/face_cut1.jpeg'
+img = np.array(Image.open(f))
+# 画像データをRGBからBGRへ変換
+img_bgr = img[:, :, ::-1]
+
+try:
+    # \nなどの余分なものを取り除く
+    #b = [list(map(int, s.split())) for s in [t for t in lip_landmark.str.replace("\\n", "").str.replace("]","").str.split("[") if t][0] if s]
+    #　arrayに変換
+    # contour = np.array(b)
+    # print(type(lip_landmark[0]), len(lip_landmark[0]), lip_landmark[0])
+    contour = np.array(lip_landmarks)
+
+    # マスク画像を作成
+    # 元の画像と同じ大きさのマスク画像を作る
+    mask = np.zeros_like(img_bgr)
+    cv2.fillConvexPoly(mask, contour, color=(255, 255, 255))
+
+    # 背景画像
+    bg_color = (0, 0, 0) # 黒
+    bg_img = np.full_like(img_bgr, bg_color)
+
+    # np.where() はマスクの値が (255, 255, 255) の要素は前景画像 img1 の値、
+    # マスクの値が (0, 0, 0) の要素は背景画像 img2 の値を返す。
+    result = np.where(mask==255, img_bgr, bg_img)
+    file_name = './test/lip_cut1.jpeg'
+    cv2.imwrite(file_name, result)
+except Exception as e:
+    print(type(e), os.path.basename(f))
+
 
 
 
