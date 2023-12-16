@@ -7,6 +7,9 @@ import numpy as np
 import sys
 import os
 import cv2
+import dlib
+import glob
+from imutils import face_utils
 
 # パスの整理
 current_dir = os.getcwd()
@@ -17,7 +20,6 @@ args = sys.argv
 
 # 顔領域の切り取り
 #顔検出器のインポート
-import dlib
 faceDetector = dlib.get_frontal_face_detector()
 #顔を切り抜く関数をdefで定義
 def crop_face(path):
@@ -36,6 +38,63 @@ try:
 except Exception as e:
     print(f)
     print(e)
+
+
+# 顔器官検出
+# 顔検出器の学習済みモデルへのパス
+predictor_path = os.path.join(current_dir, 'data/dlib/shape_predictor_68_face_landmarks.dat')
+#画像のルートディレクトリ
+img_root_dir = os.path.join(current_dir, 'data/images/')
+#face_cutディレクトリへのパス
+original_imgs_dir = os.path.join(img_root_dir, 'face_cut')
+#ランドマーク検出した画像の保存先へのパス
+result_imgs_dir = os.path.join(current_dir, 'test/')
+
+# 顔検出ツールの呼び出し
+face_detector = dlib.get_frontal_face_detector()
+
+# 顔のランドマーク検出ツールの呼び出し
+face_predictor = dlib.shape_predictor(predictor_path)
+
+# 検出対象の画像の呼び込み
+img = cv2.imread('./test/face_cut1.jpeg')
+
+#変数定義
+landmarks = []
+
+# 処理高速化のためグレースケール化(任意)
+img_gry = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# 顔検出
+# ※2番めの引数はupsampleの回数。基本的に1回で十分。
+faces = face_detector(img_gry, 1)
+
+# （1枚の画像の中に複数の顔があった場合）検出した全顔に対して処理
+for face in faces:
+    # 顔のランドマーク検出
+    landmark = face_predictor(img_gry, face)
+    # 処理高速化のためランドマーク群をNumPy配列に変換(必須)
+    landmark = face_utils.shape_to_np(landmark)
+
+# 切り取りたい下唇の真ん中の座標を配列に詰める
+lip_landmarks = []
+# 下唇の下側の座標（no.56~59）を逆にする（そうしないと変な形に切り抜かれるので）
+under_landmark = landmark[56:59]
+under_landmark = under_landmark[::-1]
+# リストにして詰める
+lip_landmarks.extend(under_landmark.tolist())
+lip_landmarks.extend(landmark[65:69].tolist())
+# ターミナルに出力
+print(lip_landmarks)
+
+# ランドマーク描画
+for (i, (x, y)) in enumerate(lip_landmarks):
+    cv2.circle(img, (x, y), 1, (255, 0, 0), -1)
+
+# 生成した画像を保存
+file_name = ('./test/lip_landmarks1.jpeg')
+cv2.imwrite(file_name, img)
+
 
 
 '''
