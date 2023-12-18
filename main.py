@@ -165,7 +165,8 @@ bgr.append([b_ave, g_ave, r_ave])
 print(bgr)
 
 
-'''
+# テスト画像で推定
+
 # 画像サイズ
 IMG_SIZE = 150
 INPUT_SHAPE = (IMG_SIZE, IMG_SIZE,3)
@@ -177,7 +178,7 @@ model.load_weights(WEIGHT_PATH)
 
 
 # 読み込んだ画像をINPUT_SHAPEにリサイズ
-img = keras.preprocessing.image.load_img(args[1], target_size=INPUT_SHAPE)
+img = keras.preprocessing.image.load_img('./test/face_cut1.jpeg', target_size=INPUT_SHAPE)
 # 前の行でリサイズしたimgをndarrayに変換
 x = keras.preprocessing.image.img_to_array(img)
 # ndarrayに次元を追加（理由は不明）
@@ -197,5 +198,3 @@ print(features)
 # else:
 #     print(u'綾鷹ではなく' + str(CATEGORIES_NAME[np.argmax(features[0])]) + 'が選ばれました。')
 # print("----------------------------------------------")
-
-'''
