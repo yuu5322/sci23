@@ -32,6 +32,10 @@ $ python get_face_color_avg.py
 
 $ python face_landmarks.py
 
+### 顔画像から唇領域を取り除く
+
+$ python remove_lip.py
+
 ### 唇領域の色の平均値の計算
 
 $ python get_lip_color_avg.py
