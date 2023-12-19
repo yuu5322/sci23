@@ -12,9 +12,9 @@ current_dir = os.getcwd()
 img_root_dir = os.path.join(current_dir, 'images/')
 # 顔だけを切り抜いた画像のパス
 face_cut_dir = os.path.join(img_root_dir, 'face_cut')
-# 唇領域のみの画像の保存場所
-lip_cut_dir = os.path.join(img_root_dir, 'lip_cut')
-os.makedirs(lip_cut_dir, exist_ok=True)
+# 唇を切り抜いた画像の保存場所
+remove_lip_dir = os.path.join(img_root_dir, 'remove_lip')
+os.makedirs(remove_lip_dir, exist_ok=True)
 
 # 顔画像（カラー）の読み込み
 face_imgs = glob.glob(os.path.join(face_cut_dir, '*.jpeg'))
@@ -42,15 +42,20 @@ for f in face_imgs:
         # 元の画像と同じ大きさのマスク画像を作る
         mask = np.zeros_like(img_bgr)
         cv2.fillConvexPoly(mask, contour, color=(255, 255, 255))
-
+        '''
+        # これだと唇だけ残った画像になってしまう
+        # ので、もう1回マスクして顔だけ残るようなマスク画像を作る
+        mask_reverse = np.zeros_like(img_bgr)
+        '''
         # 背景画像
         bg_color = (0, 0, 0) # 黒
         bg_img = np.full_like(img_bgr, bg_color)
 
         # np.where() はマスクの値が (255, 255, 255) の要素は前景画像 img1 の値、
-        # マスクの値が (0, 0, 0) の要素は背景画像 img2 の値を返す。
+        # マスクの値が (0, 0, 0) の要素は背景画像の値を返す。
         result = np.where(mask==255, img_bgr, bg_img)
-        file_name = f.replace('/images/face_cut/', '/images/lip_cut/')
+        file_name = f.replace('/images/face_cut/', '/images/remove_lip/')
         cv2.imwrite(file_name, result)
+        
     except Exception as e:
         print(type(e), os.path.basename(f))
