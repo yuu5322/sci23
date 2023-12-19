@@ -60,7 +60,7 @@ for f in files:
         under_landmark = landmark[56:59]
         under_landmark = under_landmark[::-1]
         #リストにして詰める
-        lip_landmarks = landmark[48:60]
+        lip_landmarks = landmark[48:60].tolist()
         lip_center.extend(under_landmark.tolist())
         lip_center.extend(landmark[65:69].tolist())
 
