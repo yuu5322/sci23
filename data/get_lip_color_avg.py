@@ -96,7 +96,7 @@ for k in lip_imgs:
     r_ave=r_ave/l
 
     #np配列だった場合はbgr[file_number]=np.array([file_number, b_ave, g_ave, r_ave])
-    file_name_for_csv = k.replace('/images/lip_cut/', '/images/face_cut/')
+    file_name_for_csv = k.replace('/images/lip_cut/', '/images/remove_lip/')
     bgr.append([file_number, file_name_for_csv, b_ave, g_ave, r_ave])
     file_number = file_number + 1
 
