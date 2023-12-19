@@ -55,19 +55,21 @@ for f in files:
 
         # 切り取りたい下唇の真ん中の座標を配列に詰める
         lip_landmarks = []
+        lip_center = []
         #下唇の下側の座標（no.56~59）を逆にする（そうしないと変な形に切り抜かれるので）
         under_landmark = landmark[56:59]
         under_landmark = under_landmark[::-1]
         #リストにして詰める
-        lip_landmarks.extend(under_landmark.tolist())
-        lip_landmarks.extend(landmark[65:69].tolist())
+        lip_landmarks = landmark[48:60]
+        lip_center.extend(under_landmark.tolist())
+        lip_center.extend(landmark[65:69].tolist())
 
         #ランドマークを配列に詰める（csv出力用）
-        landmarks.append([file_number, f, json.dumps(lip_landmarks)])
+        landmarks.append([file_number, f, json.dumps(lip_center), json.dumps(lip_landmarks)])
         file_number = file_number + 1
 
         # ランドマーク描画
-        for (i, (x, y)) in enumerate(lip_landmarks):
+        for (i, (x, y)) in enumerate(lip_center):
             cv2.circle(img, (x, y), 1, (255, 0, 0), -1)
 
     # 生成した画像を保存
@@ -75,5 +77,5 @@ for f in files:
     file_name = f.replace('/images/face_cut/', '/images/face_landmarks/')
     cv2.imwrite(file_name, img)
 
-df = pd.DataFrame(landmarks, columns=['file_number','file_name', 'lip_landmarks'])
+df = pd.DataFrame(landmarks, columns=['file_number','file_name', 'lip_center', 'lip_landmarks'])
 df.to_csv(output_dir + '/lip_landmarks.csv')
