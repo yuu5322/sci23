@@ -28,7 +28,7 @@ for f in face_imgs:
     img_bgr = img[:, :, ::-1]
 
     #　画像ファイル名と一致する座標を取り出す
-    lip_landmark = df[df['file_name']==os.path.join(f)]['lip_landmarks'].tolist()
+    lip_landmark = df[df['file_name']==os.path.join(f)]['lip_center'].tolist()
     #　顔のランドマーク検出が上手くいってなくてcsvが空の時は処理しないようにする
     try:
         # \nなどの余分なものを取り除く
