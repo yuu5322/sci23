@@ -40,15 +40,11 @@ for f in face_imgs:
 
         # マスク画像を作成
         # 元の画像と同じ大きさのマスク画像を作る
-        mask = np.zeros_like(img_bgr)
-        cv2.fillConvexPoly(mask, contour, color=(255, 255, 255))
-        '''
-        # これだと唇だけ残った画像になってしまう
-        # ので、もう1回マスクして顔だけ残るようなマスク画像を作る
-        mask_reverse = np.zeros_like(img_bgr)
-        '''
+        bg_color = (255, 255, 255) # 黒
+        mask = np.full_like(img_bgr, bg_color)
+        cv2.fillConvexPoly(mask, contour, color=(0, 0, 0))
+        
         # 背景画像
-        bg_color = (0, 0, 0) # 黒
         bg_img = np.full_like(img_bgr, bg_color)
 
         # np.where() はマスクの値が (255, 255, 255) の要素は前景画像 img1 の値、
