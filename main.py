@@ -77,24 +77,61 @@ for face in faces:
     # 処理高速化のためランドマーク群をNumPy配列に変換(必須)
     landmark = face_utils.shape_to_np(landmark)
 
-# 切り取りたい下唇の真ん中の座標を配列に詰める
-lip_landmarks = []
-# 下唇の下側の座標（no.56~59）を逆にする（そうしないと変な形に切り抜かれるので）
-under_landmark = landmark[56:59]
-under_landmark = under_landmark[::-1]
-# リストにして詰める
-lip_landmarks.extend(under_landmark.tolist())
-lip_landmarks.extend(landmark[65:69].tolist())
-# ターミナルに出力
-print(lip_landmarks)
+    # 切り取りたい下唇の真ん中の座標を配列に詰める
+    lip_landmarks = []
+    lip_center = []
+    #下唇の下側の座標（no.56~59）を逆にする（そうしないと変な形に切り抜かれるので）
+    under_landmark = landmark[56:59]
+    under_landmark = under_landmark[::-1]
+    #リストにして詰める
+    lip_landmarks = landmark[48:60].tolist()
+    lip_center.extend(under_landmark.tolist())
+    lip_center.extend(landmark[65:69].tolist())
+    # ターミナルに出力
+    print(lip_landmarks)
+    print(lip_center)
 
 # ランドマーク描画
-for (i, (x, y)) in enumerate(lip_landmarks):
+for (i, (x, y)) in enumerate(lip_center):
     cv2.circle(img, (x, y), 1, (255, 0, 0), -1)
 
 # 生成した画像を保存
 file_name = ('./test/lip_landmarks1.jpeg')
 cv2.imwrite(file_name, img)
+
+
+#唇領域を取り除く
+f = './test/face_cut1.jpeg'
+img = np.array(Image.open(f))
+# 画像データをRGBからBGRへ変換
+img_bgr = img[:, :, ::-1]
+
+#　顔のランドマーク検出が上手くいってなくてcsvが空の時は処理しないようにする
+try:
+    # \nなどの余分なものを取り除く
+    #b = [list(map(int, s.split())) for s in [t for t in lip_landmark.str.replace("\\n", "").str.replace("]","").str.split("[") if t][0] if s]
+    #　arrayに変換
+    # contour = np.array(b)
+    # print(type(lip_landmark[0]), len(lip_landmark[0]), lip_landmark[0])
+    contour = np.array(lip_landmarks)
+
+    # マスク画像を作成
+    # 元の画像と同じ大きさのマスク画像を作る
+    bg_color = (255, 255, 255) # 黒
+    mask = np.full_like(img_bgr, bg_color)
+    cv2.fillConvexPoly(mask, contour, color=(0, 0, 0))
+    
+    # 背景画像
+    bg_img = np.full_like(img_bgr, bg_color)
+
+    # np.where() はマスクの値が (255, 255, 255) の要素は前景画像 img1 の値、
+    # マスクの値が (0, 0, 0) の要素は背景画像の値を返す。
+    result = np.where(mask==255, img_bgr, bg_img)
+    file_name = './test/remove_lip1.jpeg'
+    cv2.imwrite(file_name, result)
+    
+except Exception as e:
+    print(type(e), os.path.basename(f))
 
 
 # リップカラーの抽出
@@ -113,7 +150,7 @@ try:
     #　arrayに変換
     # contour = np.array(b)
     # print(type(lip_landmark[0]), len(lip_landmark[0]), lip_landmark[0])
-    contour = np.array(lip_landmarks)
+    contour = np.array(lip_center)
 
     # マスク画像を作成
     # 元の画像と同じ大きさのマスク画像を作る
@@ -178,7 +215,7 @@ model.load_weights(WEIGHT_PATH)
 
 
 # 読み込んだ画像をINPUT_SHAPEにリサイズ
-img = keras.preprocessing.image.load_img('./test/face_cut1.jpeg', target_size=INPUT_SHAPE)
+img = keras.preprocessing.image.load_img('./test/remove_lip1.jpeg', target_size=INPUT_SHAPE)
 # 前の行でリサイズしたimgをndarrayに変換
 x = keras.preprocessing.image.img_to_array(img)
 # ndarrayに次元を追加（理由は不明）
