@@ -233,6 +233,11 @@ features = model.predict(x)
 print('===predict color===')
 print(features)
 
+# 画像として保存
+predict_lip_img = np.full(result_img_shape, features)
+file_name = './test/predict_lip.jpeg'
+cv2.imwrite(file_name, predict_lip_img)
+
 # コサイン類似度を計算する
 bgr = np.array(bgr)
 a = bgr.reshape((1,3))
