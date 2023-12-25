@@ -88,8 +88,8 @@ for face in faces:
     lip_center.extend(under_landmark.tolist())
     lip_center.extend(landmark[65:69].tolist())
     # ターミナルに出力
-    print(lip_landmarks)
-    print(lip_center)
+    # print(lip_landmarks)
+    # print(lip_center)
 
 # ランドマーク描画
 for (i, (x, y)) in enumerate(lip_center):
@@ -199,6 +199,7 @@ g_ave=g_ave/l
 r_ave=r_ave/l
 
 bgr.append([b_ave, g_ave, r_ave])
+print(===lip_color_avg===)
 print(bgr)
 
 
@@ -223,6 +224,7 @@ x = np.expand_dims(x, axis=0)
 
 # モデルで予測する
 features = model.predict(x)
+print(===predict color===)
 print(features)
 
 # print("確率：")
