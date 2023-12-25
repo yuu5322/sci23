@@ -234,9 +234,10 @@ features = np.array(features)
 b = features.reshape((1,3))
 print(a)
 print(b)
-cos_similarity = np.dot(a, b)/(np.sqrt(np.dot(a, a))*np.sqrt(np.dot(b, b)))
+cos_similarity = np.dot(a, b.T)/(np.sqrt(np.dot(a, a.T))*np.sqrt(np.dot(b, b.T)))
 print('===cos_similarity===')
 print(cos_similarity)
+
 
 # print("確率：")
 # for i in range(0, 7):
