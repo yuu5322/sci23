@@ -199,7 +199,7 @@ g_ave=g_ave/l
 r_ave=r_ave/l
 
 bgr.append([b_ave, g_ave, r_ave])
-print(===lip_color_avg===)
+print('===lip_color_avg===')
 print(bgr)
 
 
@@ -224,8 +224,13 @@ x = np.expand_dims(x, axis=0)
 
 # モデルで予測する
 features = model.predict(x)
-print(===predict color===)
+print('===predict color===')
 print(features)
+
+# コサイン類似度を計算する
+
+print('===cos_similarity===')
+print()
 
 # print("確率：")
 # for i in range(0, 7):
