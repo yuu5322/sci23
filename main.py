@@ -228,9 +228,15 @@ print('===predict color===')
 print(features)
 
 # コサイン類似度を計算する
-
+bgr = np.array(bgr)
+a = bgr.reshape((1,3))
+features = np.array(features)
+b = features.reshape((1,3))
+print(a)
+print(b)
+cos_similarity = np.dot(a, b)/(np.sqrt(np.dot(a, a))*np.sqrt(np.dot(b, b)))
 print('===cos_similarity===')
-print()
+print(cos_similarity)
 
 # print("確率：")
 # for i in range(0, 7):
