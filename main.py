@@ -202,6 +202,12 @@ bgr.append([b_ave, g_ave, r_ave])
 print('===lip_color_avg===')
 print(bgr)
 
+# 画像として保存
+result_img_shape = (100, 100, 3)
+lip_avg_img = np.full(result_img_shape, bgr)
+file_name = './test/lip_avg.jpeg'
+cv2.imwrite(file_name, lip_avg_img)
+
 
 # テスト画像で推定
 
