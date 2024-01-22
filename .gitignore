@@ -4,3 +4,4 @@ data/train_test_data/*
 test/*
 
 .DS_Store
+*.pdf
